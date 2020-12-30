@@ -1,0 +1,34 @@
+.course-main-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 100px;
+    padding-right: 40px;
+    background: #f2f8ff;
+}
+.course-head {
+    clear: both;
+}
+.course-head h3 {
+    float: left;
+    margin-right: 2%;
+    width: 5%;
+    font-size: 40px;
+    font-family: 'Poppins ExtraLight';
+    color: #121616;
+    border-right: 1px solid #cecece;
+}
+.course-head h2 {
+    font-size: 40px;
+    font-family: 'Poppins SemiBold';
+    color: #121616;
+}
+.course-main-container .course-headimg {
+    margin-top: 30px;
+    height: 300px;
+    width: 100%;
+    background-image: url("../../../resources/images/course-registration.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 1px 1px 5px #cecece;
+}

@@ -1,0 +1,104 @@
+.Login {
+    background: #f2f8ff;
+    padding: 50px 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.Login .image-holder {
+    border-radius: 10px 0px 0px 10px;
+    display: table-cell;
+    width: auto;
+    background: url("../../resources/images/login2.jpg");
+    background-size: cover;
+}
+
+.Login .form-container {
+    border-radius: 10px 10px 10px 10px;
+    display: table;
+    max-width: 1000px;
+    width: 100%;
+    height: 550px;
+    margin: 0 auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.Login form {
+    border-radius: 0px 10px 10px 0px;
+    display: table-cell;
+    width: 400px;
+    background-color: #ffffff;
+    padding: 50px 50px;
+    color: #505e6c;
+}
+
+@media (max-width:991px) {
+    .Login form {
+        padding: 40px;
+    }
+}
+
+.blink-logo {
+    background-image: url("../../resources/Logo-Final.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 35px;
+    margin-left: 100px;
+}
+
+.Login form h2 {
+    padding-top: 40px;
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    font-family: 'Poppins';
+    color: #495a5a;
+}
+
+.Login form .form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #dfe7f1;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    text-indent: 0px;
+    height: 40px;
+}
+
+.Login form .btn {
+    background: #3980d0;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 35px;
+    text-shadow: none;
+    outline: none !important;
+}
+
+.Login form .btn:hover,
+.Login form .btn:active {
+    background: #2f69ac;
+}
+
+.Login form .btn:active {
+    transform: translateY(1px);
+}
+
+.Login form .already {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #6f7a85;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+span {
+    color: #3980d0;
+}
