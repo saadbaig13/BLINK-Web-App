@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './Navigation.scss';
 import {Link} from 'react-router-dom';
+import StudentUserContext from '../../../context/StudentUserContext';
 
 function Navigation() {
+    const {setStudentUserData} = useContext(StudentUserContext);
+
+    const logout = () => {
+        setStudentUserData({
+            token: undefined,
+            student: undefined
+        });
+        localStorage.setItem("auth-token", "");
+    };
+
     return (
         <div className="Navigation">
             <div class="area"></div>
@@ -87,7 +98,7 @@ function Navigation() {
 
                 <ul class="logout">
                     <li>
-                        <a href="#">
+                        <a href="#" onClick={logout}>
                             <Link to="/" style={{color: 'inherit', textDecoration: 'inherit'}}>
                                 <i class="fa fa-power-off fa-2x"></i>
                                 <span class="nav-text">Logout</span>

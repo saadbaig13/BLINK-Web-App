@@ -63,7 +63,6 @@ router.post("/login", async (req, res) => {
             token,
             student: {
                 id: student._id,
-                email: student.email,
                 name: student.name
             }
         });
@@ -99,6 +98,14 @@ router.post("/tokenIsValid", async (req, res) => {
     catch (err) {
         res.status(500).json({error: err.message});
     }
+});
+
+router.get("/", auth, async (req, res) => {
+    const student = await studentUser.findById(req.student);
+    res.json({
+        name: student.name,
+        id: student._id
+    });
 });
 
 module.exports = router;

@@ -1,12 +1,13 @@
 // import './App.css';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 // main
-import Login from './main/Login/Login';
-import Signup from './main/Signup/Signup';
-import Choose from './main/Choose/Choose';
+import StudentLogin from './main/StudentLogin/StudentLogin';
+import StudentSignup from './main/StudentSignup/StudentSignup';
+import TeacherLogin from './main/TeacherLogin/TeacherLogin';
+import TeacherSignup from './main/TeacherSignup/TeacherSignup';
 
 // student
 import Dashboard from './student/pages/Dashboard/Dashboard';
@@ -31,24 +32,62 @@ import AdminAcademicReport from './admin/pages/AdminAcademicReport/AdminAcademic
 import AdminFeeChallan from './admin/pages/AdminFeeChallan/AdminFeeChallan';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import StudentUserContext from './context/StudentUserContext';
+import Axios from 'axios';
 
 function App() {
+  const [studentUserData, setStudentUserData] = useState({
+    token: undefined,
+    student: undefined
+  });
+
+  useEffect(() => {
+    const checkStudentLogin = async () => {
+      let token = localStorage.getItem("auth-token");
+      if(token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+      }
+      const tokenResponse = await Axios.post(
+        "http://localhost:5000/student/tokenIsValid",
+        null,
+        {headers: {"x-auth-token": token}}
+      );
+      if(tokenResponse.data) {
+        const studentLoginResponse = await Axios.get(
+          "http://localhost:5000/student/",
+          {headers: {"x-auth-token": token}}
+        );
+        setStudentUserData({
+          token,
+          student: studentLoginResponse.data
+        });
+      }
+    };
+
+    checkStudentLogin();
+  }, []);
+
   return (
     <div className="App">
       <Router>
-        <Route exact path="/" component={Login} />
-        <Route path="/Signup" component={Signup} />
-        <Route path="/Choose" component={Choose} />
+        <StudentUserContext.Provider value={{studentUserData, setStudentUserData}}>
+          <Route exact path="/" component={StudentLogin} />
+          <Route path="/StudentSignup" component={StudentSignup} />
 
-        <Route path="/Dashboard" component={Dashboard} />
-        <Route path="/CourseRegistration" component={CourseRegistration} />
-        <Route path="/Attendance" component={Attendance} />
-        <Route path="/Media" component={Media} />
-        <Route path="/Assignments" component={Assignments} />
-        <Route path="/Quiz" component={Quiz} />
-        <Route path="/Whiteboard" component={Whiteboard} />
-        <Route path="/AcademicReport" component={AcademicReport} />
-        <Route path="/FeeChallan" component={FeeChallan} />
+          <Route path="/Dashboard" component={Dashboard} />
+          <Route path="/CourseRegistration" component={CourseRegistration} />
+          <Route path="/Attendance" component={Attendance} />
+          <Route path="/Media" component={Media} />
+          <Route path="/Assignments" component={Assignments} />
+          <Route path="/Quiz" component={Quiz} />
+          <Route path="/Whiteboard" component={Whiteboard} />
+          <Route path="/AcademicReport" component={AcademicReport} />
+          <Route path="/FeeChallan" component={FeeChallan} />
+        </StudentUserContext.Provider>
+
+        <Route path="/TeacherLogin" component={TeacherLogin} />
+        <Route path="/TeacherSignup" component={TeacherSignup} />
 
         <Route path="/AdminDashboard" component={AdminDashboard} />
         <Route path="/AdminCourseRegistration" component={AdminCourseRegistration} />

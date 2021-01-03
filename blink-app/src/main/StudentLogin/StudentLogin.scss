@@ -1,4 +1,4 @@
-.Login {
+.SLogin {
     background: #f2f8ff;
     padding: 50px 0;
     height: 100%;
@@ -6,15 +6,15 @@
     position: fixed;
 }
 
-.Login .image-holder {
+.SLogin .image-holder {
     border-radius: 10px 0px 0px 10px;
     display: table-cell;
     width: auto;
-    background: url("../../resources/images/login2.jpg");
+    background: url("../../resources/images/student.jpg");
     background-size: cover;
 }
 
-.Login .form-container {
+.SLogin .form-container {
     border-radius: 10px 10px 10px 10px;
     display: table;
     max-width: 1000px;
@@ -25,7 +25,7 @@
     text-align: center;
 }
 
-.Login form {
+.SLogin form {
     border-radius: 0px 10px 10px 0px;
     display: table-cell;
     width: 400px;
@@ -35,7 +35,7 @@
 }
 
 @media (max-width:991px) {
-    .Login form {
+    .SLogin form {
         padding: 40px;
     }
 }
@@ -49,7 +49,7 @@
     margin-left: 100px;
 }
 
-.Login form h2 {
+.SLogin form h2 {
     padding-top: 40px;
     font-size: 20px;
     line-height: 1.5;
@@ -58,7 +58,7 @@
     color: #495a5a;
 }
 
-.Login form .form-control {
+.SLogin form .form-control {
     background: transparent;
     border: none;
     border-bottom: 1px solid #dfe7f1;
@@ -70,7 +70,7 @@
     height: 40px;
 }
 
-.Login form .btn {
+.SLogin form .btn {
     background: #3980d0;
     border: none;
     border-radius: 4px;
@@ -81,22 +81,32 @@
     outline: none !important;
 }
 
-.Login form .btn:hover,
-.Login form .btn:active {
+.SLogin form .btn:hover,
+.SLogin form .btn:active {
     background: #2f69ac;
 }
 
-.Login form .btn:active {
+.SLogin form .btn:active {
     transform: translateY(1px);
 }
 
-.Login form .already {
+.SLogin form .areYouTeacher {
     display: block;
     text-align: center;
     font-size: 12px;
     color: #6f7a85;
     opacity: 0.9;
     text-decoration: none;
+}
+
+.SLogin form .already {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #6f7a85;
+    opacity: 0.9;
+    text-decoration: none;
+    margin-top: 10px;
 }
 
 span {
