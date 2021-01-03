@@ -1,10 +1,10 @@
-const studentRouter = require("express").Router();
+const teacherRouter = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const studentAuth = require("../middleware/studentAuth");
-const studentUser = require("../models/studentUserModel");
+const teacherAuth = require("../middleware/teacherAuth");
+const teacherUser = require("../models/teacherUserModel");
 
-studentRouter.post("/register", async (req, res) => {
+teacherRouter.post("/register", async (req, res) => {
     
     try {
         let {name, email, password, passwordCheck} = req.body;
@@ -18,29 +18,29 @@ studentRouter.post("/register", async (req, res) => {
         if(password != passwordCheck)
             return res.status(400).json({msg: "Passwords do not match."});
         
-        const existingStudent = await studentUser.findOne({email: email});
+        const existingTeacher = await teacherUser.findOne({email: email});
 
-        if(existingStudent)
+        if(existingTeacher)
             return res.status(400).json({msg: "Email already exists."});
         
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
         
-        const newStudent = studentUser({
+        const newTeacher = teacherUser({
             email,
             password: passwordHash,
             name
         });
 
-        const savedStudent = await newStudent.save();
-        res.json(savedStudent);
+        const savedTeacher = await newTeacher.save();
+        res.json(savedTeacher);
     }
     catch (err) {
         res.status(500).json({error: err.message});
     }
 });
 
-studentRouter.post("/login", async (req, res) => {
+teacherRouter.post("/login", async (req, res) => {
     
     try {
         let {email, password} = req.body;
@@ -50,20 +50,20 @@ studentRouter.post("/login", async (req, res) => {
         if(!email || !password)
             return res.status(400).json({msg: "Some fields are empty."});
         
-        const student = await studentUser.findOne({email: email});
-        if(!student)
-            return res.status(400).json({msg: "Student email doesn't exists."});
+        const teacher = await teacherUser.findOne({email: email});
+        if(!teacher)
+            return res.status(400).json({msg: "Teacher email doesn't exists."});
 
-        const isMatch = await bcrypt.compare(password, student.password);
+        const isMatch = await bcrypt.compare(password, teacher.password);
         if(!isMatch)
             return res.status(400).json({msg: "Invalid credentials."});
         
-        const token = jwt.sign({id: student._id}, process.env.JWT_SECRET);
+        const token = jwt.sign({id: teacher._id}, process.env.JWT_SECRET);
         res.json({
             token,
-            student: {
-                id: student._id,
-                name: student.name
+            teacher: {
+                id: teacher._id,
+                name: teacher.name
             }
         });
     }
@@ -72,17 +72,17 @@ studentRouter.post("/login", async (req, res) => {
     }
 });
 
-studentRouter.delete("/delete", studentAuth, async (req, res) => {
+teacherRouter.delete("/delete", teacherAuth, async (req, res) => {
     try{
-        const deletedStudent = await studentUser.findByIdAndDelete(req.student);
-        res.json(deletedStudent);
+        const deletedTeacher = await teacherUser.findByIdAndDelete(req.teacher);
+        res.json(deletedTeacher);
     }
     catch (err) {
         res.status(500).json({error: err.message});
     }
 });
 
-studentRouter.post("/tokenIsValid", async (req, res) => {
+teacherRouter.post("/tokenIsValid", async (req, res) => {
     try{
         const token = req.header("x-auth-token");
         if(!token) return res.json(false);
@@ -90,8 +90,8 @@ studentRouter.post("/tokenIsValid", async (req, res) => {
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         if(!verified) return res.json(false);
 
-        const student = await studentUser.findById(verified.id);
-        if(!student) return res.json(false);
+        const teacher = await teacherUser.findById(verified.id);
+        if(!teacher) return res.json(false);
 
         return res.json(true);
     }
@@ -100,12 +100,12 @@ studentRouter.post("/tokenIsValid", async (req, res) => {
     }
 });
 
-studentRouter.get("/", studentAuth, async (req, res) => {
-    const student = await studentUser.findById(req.student);
+teacherRouter.get("/", teacherAuth, async (req, res) => {
+    const teacher = await teacherUser.findById(req.teacher);
     res.json({
-        name: student.name,
-        id: student._id
+        name: teacher.name,
+        id: teacher._id
     });
 });
 
-module.exports = studentRouter;
+module.exports = teacherRouter;

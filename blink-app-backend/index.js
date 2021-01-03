@@ -28,3 +28,4 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
 //routes
 
 app.use("/student", require("./routes/studentUserRouter"));
+app.use("/teacher", require("./routes/teacherUserRouter"));

@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './AdminNavigation.scss';
 import {Link} from 'react-router-dom';
+import TeacherUserContext from '../../../context/TeacherUserContext';
 
 function AdminNavigation() {
+    const {setTeacherUserData} = useContext(TeacherUserContext);
+
+    const logout = () => {
+        setTeacherUserData({
+            token: undefined,
+            student: undefined
+        });
+        localStorage.setItem("auth-token", "");
+    };
+
     return (
         <div className="Navigation">
             <div class="area"></div>
@@ -87,8 +98,8 @@ function AdminNavigation() {
 
                 <ul class="logout">
                     <li>
-                        <a href="#">
-                            <Link to="/" style={{color: 'inherit', textDecoration: 'inherit'}}>
+                        <a href="#" onClick={logout}>
+                            <Link to="/TeacherLogin" style={{color: 'inherit', textDecoration: 'inherit'}}>
                                 <i class="fa fa-power-off fa-2x"></i>
                                 <span class="nav-text">Logout</span>
                             </Link>

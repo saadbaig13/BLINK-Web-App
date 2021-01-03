@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const auth = (req, res, next) => {
+const teacherAuth = (req, res, next) => {
     try{
         const token = req.header("x-auth-token");
         if(!token)
@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
         if(!verified)
             return res.status(401).json({msg: "Token verification failed. Authorization denied."});
         
-        req.student = verified.id;
+        req.teacher = verified.id;
         next();
     }
     catch (err) {
@@ -18,4 +18,4 @@ const auth = (req, res, next) => {
     }
 };
 
-module.exports = auth;
+module.exports = teacherAuth;
