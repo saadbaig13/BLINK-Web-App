@@ -7,6 +7,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import StudentUserContext from './context/StudentUserContext';
 import TeacherUserContext from './context/TeacherUserContext';
+import NotFound from './main/NotFound/NotFound';
 import Axios from 'axios';
 
 // student

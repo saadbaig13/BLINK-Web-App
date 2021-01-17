@@ -30,3 +30,4 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
 app.use("/student", require("./routes/studentUserRouter"));
 app.use("/teacher", require("./routes/teacherUserRouter"));
 app.use("/courses", require("./routes/coursesRouter"));
+app.use("/studentCourses", require("./routes/studentCoursesRouter"));

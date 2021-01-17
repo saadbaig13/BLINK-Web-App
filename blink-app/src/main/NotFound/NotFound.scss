@@ -1,0 +1,31 @@
+.not-found {
+    text-align: center;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.not-found h1 {
+    font-family: 'Poppins SemiBold';
+    font-size: 200px;
+    color: #3980d0;
+    margin-bottom: 0;
+}
+.not-found h3 {
+    font-family: 'Poppins SemiBold';
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+.not-found p {
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+.not-found .dot {
+    height: 20px;
+    width: 20px;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #3980d0;
+    border-radius: 50%;
+    display: inline-block;
+}

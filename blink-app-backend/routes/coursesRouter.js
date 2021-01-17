@@ -1,40 +1,43 @@
 const coursesRouter = require("express").Router();
-const studentAuth = require("../middleware/studentAuth");
-const Course = require("../models/courseModel");
+const Courses = require("../models/coursesModel");
 
-coursesRouter.post("/", studentAuth, async (req, res) => {
+coursesRouter.post("/", async (req, res) => {
     try {
         let {courseName, courseCode, creditHours} = req.body;
 
         if(!courseName || !courseCode || !creditHours)
             return res.status(400).json({msg: "Some fields are empty."});
         
-        const newCourse = Course({
+        const existingCourse = await Courses.findOne({courseName: courseName, courseCode: courseCode});
+
+        if(existingCourse)
+            return res.status(400).json({msg: "Course already exists."});
+        
+        const newCourse = Courses({
             courseName,
             courseCode,
-            creditHours,
-            studentUserId: req.student
+            creditHours
         });
 
-        const registeredCourse = await newCourse.save();
-        res.json(registeredCourse);
+        const addedCourse = await newCourse.save();
+        res.json(addedCourse);
     }
     catch (err) {
         res.status(500).json({error: err.message});
     }
 });
 
-coursesRouter.get("/registered", studentAuth, async (req, res) => {
-    const registeredCourses = await Course.find({studentUserId: req.student});
-    res.json(registeredCourses);
+coursesRouter.get("/added", async (req, res) => {
+    const addedCourses = await Courses.find();
+    res.json(addedCourses);
 });
 
-coursesRouter.delete("/:id", studentAuth, async (req, res) => {
-    const course = await Course.findOne({studentUserId: req.student, _id: req.params.id});
-    if (!course)
+coursesRouter.delete("/:id", async (req, res) => {
+    const Course = await Courses.findOne({_id: req.params.id});
+    if (!Course)
         return res.status(400).json({msg: "Course not found."});
     
-    const deletedCourse = await Course.findByIdAndDelete(req.params.id);
+    const deletedCourse = await Courses.findByIdAndDelete(req.params.id);
     res.json(deletedCourse);
 });
 

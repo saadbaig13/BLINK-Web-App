@@ -32,3 +32,50 @@
     border-radius: 10px 10px 0px 0px;
     box-shadow: 1px 1px 5px #cecece;
 }
+.courses {
+    margin-top: 50px;
+    text-align: center;
+}
+.courses-table {
+    margin-top: 50px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #cecece;
+    text-align: left;
+}
+.courses-table .table-head th {
+    background-color: #3980d0;
+    color: white;
+    height: 60px;
+    padding-left: 30px;
+}
+.courses-table .table-head th:first-child {
+    background-color: #3980d0;
+    color: white;
+    border-radius: 10px 0px 0px 0px;
+}
+.courses-table .table-head th:last-child {
+    background-color: #3980d0;
+    color: white;
+    border-radius: 0px 10px 0px 0px;
+}
+.courses-table .table-content td {
+    font-family: "Mulish";
+    height: 60px;
+    padding-left: 30px;
+    border-bottom: 1px solid #dfe7f1;
+}
+.courses-table .table-content .register-course-button {
+    font-family: "Mulish";
+    background-color: #07C55D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    transition: all 0.5s ease 0s;
+}
+.courses-table .table-content .register-course-button:hover {
+    background-color: #058A41;
+    transition: all 0.5s ease 0s;
+}
