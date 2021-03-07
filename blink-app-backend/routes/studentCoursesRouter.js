@@ -3,17 +3,21 @@ const studentAuth = require("../middleware/studentAuth");
 const studentCourses = require("../models/studentCoursesModel");
 const Courses = require("../models/coursesModel");
 
-studentCoursesRouter.post("/", studentAuth, async (req, res) => {
+studentCoursesRouter.post("/:id/:courseName/:courseCode/:creditHours", studentAuth, async (req, res) => {
     try {
-        let {courseName, courseCode, creditHours} = req.body;
+        let courseName = req.params.courseName;
+        let courseCode = req.params.courseCode;
+        let creditHours = req.params.creditHours;
 
-        if(!courseName || !courseCode || !creditHours)
-            return res.status(400).json({msg: "Some fields are empty."});
-        
-        const existingCourse = await Courses.findOne({courseName: courseName, courseCode: courseCode});
+        const existingRegisteredCourse = await studentCourses.findOne({
+            studentUserId: req.student,
+            courseName: req.params.courseName,
+            courseCode: req.params.courseCode,
+            creditHours: req.params.creditHours
+        });
 
-        if(!existingCourse)
-            return res.status(400).json({msg: "Course doesn't exists."});
+        if(existingRegisteredCourse)
+            return res.status(400).json({msg: "Course already registered."});
         
         const newStudentCourse = studentCourses({
             courseName,

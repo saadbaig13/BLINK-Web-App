@@ -39,7 +39,7 @@ function AdminCourseRegistration() {
                 return res.json();
             }
         }).then(jsonRes => setCourses(jsonRes));
-    });
+    }, []);
 
     const submit = async (e) => {
         e.preventDefault();
