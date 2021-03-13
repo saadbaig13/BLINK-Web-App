@@ -4,6 +4,12 @@ import './AdminCourseRegistration.scss';
 import Modal from 'react-modal';
 import Axios from 'axios';
 import ErrorMessage from '../../../main/ErrorMessage/ErrorMessage';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} {...props} />;
+}
 
 const customStyle = {
     content: {
@@ -19,7 +25,36 @@ const customStyle = {
 Modal.setAppElement('#root');
 
 function AdminCourseRegistration() {
+    const [openOne, setOpenOne] = React.useState(false);
+    const [openTwo, setOpenTwo] = React.useState(false);
+    const [openThree, setOpenThree] = React.useState(false);
+
+    const handleCloseOne = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    
+        setOpenOne(false);
+    };
+
+    const handleCloseTwo = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    
+        setOpenTwo(false);
+    };
+
+    const handleCloseThree = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    
+        setOpenThree(false);
+    };
+
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalTwoIsOpen, setModalTwoIsOpen] = useState(false);
     const [error, setError] = useState("");
 
     const [courseName, setCourseName] = useState();
@@ -32,6 +67,9 @@ function AdminCourseRegistration() {
         courseCode: '',
         creditHours: ''
     }])
+
+    const [announcementTitle, setAnnouncementTitle] = useState();
+    const [announcementDesc, setAnnouncementDesc] = useState();
 
     useEffect(() => {
         fetch("http://localhost:5000/courses/added").then(res => {
@@ -48,6 +86,7 @@ function AdminCourseRegistration() {
             const newCourse = {courseName, courseCode, creditHours};
             await Axios.post("http://localhost:5000/courses/", newCourse);
             setModalIsOpen(false);
+            setOpenOne(true);
         }
         catch (err) {
             err.response.data.msg && setError(err.response.data.msg);
@@ -56,8 +95,22 @@ function AdminCourseRegistration() {
 
     const onCourseDelete = (id) => {
         Axios.delete(`http://localhost:5000/courses/${id}`).then((res) => {
-            alert("Course Deleted");
+            setOpenTwo(true);
         });
+    };
+
+    const announceSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const newAnnouncement = {announcementTitle, announcementDesc};
+            await Axios.post(`http://localhost:5000/announcement/${courseName}`, newAnnouncement);
+            setModalTwoIsOpen(false);
+            setOpenThree(true);
+        }
+        catch (err) {
+            err.response.data.msg && setError(err.response.data.msg);
+        }
     };
 
     return (
@@ -71,6 +124,7 @@ function AdminCourseRegistration() {
                 <div className="course-headimg"></div>
                 <div className="courses">
                     <button className="add-course-button" onClick={() => setModalIsOpen(true)}>Add a course</button>
+                    <button className="announce-button" onClick={() => setModalTwoIsOpen(true)}>Add an Announcement</button>
                     <table className="courses-table">
                         <tr className="table-head">
                             <th>Course Name</th>
@@ -84,7 +138,7 @@ function AdminCourseRegistration() {
                                 <td>{courses.courseCode}</td>
                                 <td>{courses.creditHours}</td>
                                 <td><button onClick={() => onCourseDelete(courses._id)}>
-                                        Delete
+                                        Remove
                                     </button>
                                 </td>
                             </tr>
@@ -130,6 +184,61 @@ function AdminCourseRegistration() {
                             </form>
                         </div>
                     </Modal>
+                    <Modal isOpen={modalTwoIsOpen} style={customStyle} onRequestClose={() => setModalTwoIsOpen(false)}>
+                        <div className="course-modal">
+                            <form onSubmit={announceSubmit}>
+                                <h3>Announcement Details</h3>
+
+                                <div className="form-group">
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        name="AnnouncementTitle"
+                                        placeholder="Title"
+                                        onChange={(e) => setAnnouncementTitle(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        name="AnnouncementDesc"
+                                        placeholder="Description"
+                                        onChange={(e) => setAnnouncementDesc(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <select
+                                        className="form-control"
+                                        name="courseName"
+                                        onChange={(e) => setCourseName(e.target.value)}>
+                                    <option value="" disabled selected>Select a Course</option>
+                                    {courses.map(courses => (
+                                        <option>{courses.courseName}</option>
+                                    ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <input className="btn btn-success btn-block" type="submit" value="Add Announcement"/>
+                                </div>
+                            </form>
+                        </div>
+                    </Modal>
+                    <Snackbar open={openOne} autoHideDuration={3000} onClose={handleCloseOne}>
+                        <Alert onClose={handleCloseOne} severity="success">
+                        Course Added
+                        </Alert>
+                    </Snackbar>
+                    <Snackbar open={openTwo} autoHideDuration={3000} onClose={handleCloseTwo}>
+                        <Alert onClose={handleCloseTwo} severity="info">
+                        Course Removed
+                        </Alert>
+                    </Snackbar>
+                    <Snackbar open={openThree} autoHideDuration={3000} onClose={handleCloseThree}>
+                        <Alert onClose={handleCloseThree} severity="success">
+                        Announcement Added
+                        </Alert>
+                    </Snackbar>
                 </div>
             </div>
         </div>

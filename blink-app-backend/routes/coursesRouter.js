@@ -5,6 +5,10 @@ coursesRouter.post("/", async (req, res) => {
     try {
         let {courseName, courseCode, creditHours} = req.body;
 
+        console.log(courseName);
+        console.log(courseCode);
+        console.log(creditHours);
+
         if(!courseName || !courseCode || !creditHours)
             return res.status(400).json({msg: "Some fields are empty."});
         

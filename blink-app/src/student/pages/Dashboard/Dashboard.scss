@@ -32,3 +32,37 @@
     border-radius: 10px 10px 0px 0px;
     box-shadow: 1px 1px 5px #cecece;
 }
+.announcements {
+    float: right;
+    margin-top: -300px;
+    width: 50%;
+    height: 300px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #cecece;
+    text-align: left;
+    overflow-y: auto;
+}
+.announcements .course-name {
+    color: #3980d0;
+    font-family: 'Mulish SemiBold';
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+.announcements .title {
+    color: #121616;
+    font-family: 'Mulish ExtraBold';
+    margin-top: -15px;
+    margin-left: 30px;
+    font-size: 20px;
+}
+.announcements .desc {
+    color: #121616;
+    font-family: 'Mulish';
+    margin-top: -10px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}

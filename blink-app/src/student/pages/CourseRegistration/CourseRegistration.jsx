@@ -102,7 +102,7 @@ function CourseRegistration() {
                             </tr>
                         ))}
                     </table>
-                    <h1>Registered Courses</h1>
+                    <h1 className="registered-courses-head">Registered Courses</h1>
                     <table className="courses-table">
                         <tr className="table-head">
                             <th>Course Name</th>

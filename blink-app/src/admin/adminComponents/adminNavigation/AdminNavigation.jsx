@@ -34,7 +34,7 @@ function AdminNavigation() {
                         <a href="#">
                             <Link to="/AdminCourseRegistration" style={{color: 'inherit', textDecoration: 'inherit'}}>
                                 <i class="fa fa-list-alt fa-2x"></i>
-                                <span class="nav-text">Course Registration</span>
+                                <span class="nav-text">Courses</span>
                             </Link>
                         </a>
                     </li>
@@ -75,22 +75,6 @@ function AdminNavigation() {
                             <Link to="/AdminWhiteboard" style={{color: 'inherit', textDecoration: 'inherit'}}>
                                 <i class="fa fa-pencil fa-2x"></i>
                                 <span class="nav-text">Digital Whiteboard</span>
-                            </Link>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <Link to="/AdminAcademicReport" to="/AcademicReport" style={{color: 'inherit', textDecoration: 'inherit'}}>
-                                <i class="fa fa-bar-chart-o fa-2x"></i>
-                                <span class="nav-text">Academic Report</span>
-                            </Link>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <Link to="/AdminFeeChallan" style={{color: 'inherit', textDecoration: 'inherit'}}>
-                                <i class="fa fa-dollar fa-2x"></i>
-                                <span class="nav-text">Fee Challan</span>
                             </Link>
                         </a>
                     </li>

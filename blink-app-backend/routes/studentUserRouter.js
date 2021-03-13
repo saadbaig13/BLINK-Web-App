@@ -108,4 +108,9 @@ studentRouter.get("/", studentAuth, async (req, res) => {
     });
 });
 
+studentRouter.get("/added", async (req, res) => {
+    const addedStudents = await studentUser.find();
+    res.json(addedStudents);
+});
+
 module.exports = studentRouter;

@@ -59,6 +59,25 @@
     background-color: #3980d0;
     transition: all 0.5s ease 0s;
 }
+.courses .announce-button {
+    margin-left: 20px;
+    font-family: 'Poppins SemiBold';
+    text-align: center;
+    background-color: white;
+    color: #121616;
+    padding: 15px 30px 15px 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #cecece;
+    text-shadow: none;
+    outline: none !important;
+    transition: all 0.5s ease 0s;
+}
+.courses .announce-button:hover {
+    color: white;
+    background-color: #07C55D;
+    transition: all 0.5s ease 0s;
+}
 .course-modal h3 {
     font-family: 'Poppins';
     text-align: center;
@@ -66,11 +85,11 @@
     margin-top: 30px;
     margin-bottom: 50px;
 }
-.course-modal form {
+.course-modal {
     padding-left: 50px;
     padding-right: 50px;
 }
-.course-modal form .form-control {
+.course-modal .form-control {
     background: transparent;
     border: none;
     border-bottom: 1px solid #dfe7f1;
@@ -81,10 +100,10 @@
     text-indent: 0px;
     height: 40px;
 }
-.course-modal form .form-check-input {
+.course-modal .form-check-input {
     padding-top: 100px;
 }
-.course-modal form .btn {
+.course-modal .btn {
     background: #3980d0;
     border: none;
     border-radius: 4px;
@@ -94,11 +113,11 @@
     text-shadow: none;
     outline: none !important;
 }
-.course-modal form .btn:hover,
-.course-modal form .btn:active {
+.course-modal .btn:hover,
+.course-modal .btn:active {
     background: #2f69ac;
 }
-.course-modal form .btn:active {
+.course-modal .btn:active {
     transform: translateY(1px);
 }
 .courses-table {
