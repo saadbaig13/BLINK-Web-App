@@ -32,3 +32,4 @@ app.use("/teacher", require("./routes/teacherUserRouter"));
 app.use("/courses", require("./routes/coursesRouter"));
 app.use("/studentCourses", require("./routes/studentCoursesRouter"));
 app.use("/announcement", require("./routes/announcementRouter"));
+app.use("/attendance", require("./routes/attendanceRouter"));

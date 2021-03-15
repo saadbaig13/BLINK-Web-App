@@ -25,8 +25,8 @@ const customStyle = {
 Modal.setAppElement('#root');
 
 function AdminCourseRegistration() {
-    const [openOne, setOpenOne] = React.useState(false);
-    const [openTwo, setOpenTwo] = React.useState(false);
+    const [openOne, setOpenOne] = useState(false);
+    const [openTwo, setOpenTwo] = useState(false);
     const [openThree, setOpenThree] = React.useState(false);
 
     const handleCloseOne = (event, reason) => {

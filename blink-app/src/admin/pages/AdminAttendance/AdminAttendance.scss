@@ -32,3 +32,71 @@
     border-radius: 10px 10px 0px 0px;
     box-shadow: 1px 1px 5px #cecece;
 }
+.attendance-main-container .form-group .form-control {
+    background: transparent;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    text-indent: 0px;
+    height: 40px;
+    width: 30%;
+    margin-top: 50px;
+}
+.attendance-table {
+    margin-top: 50px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #cecece;
+    text-align: left;
+}
+.attendance-table .table-head th {
+    background-color: #3980d0;
+    color: white;
+    height: 60px;
+    padding-left: 30px;
+}
+.attendance-table .table-head th:first-child {
+    background-color: #3980d0;
+    color: white;
+    border-radius: 10px 0px 0px 0px;
+}
+.attendance-table .table-head th:last-child {
+    background-color: #3980d0;
+    color: white;
+    border-radius: 0px 10px 0px 0px;
+}
+.attendance-table .table-content td {
+    font-family: "Mulish";
+    height: 60px;
+    padding-left: 30px;
+    border-bottom: 1px solid #dfe7f1;
+}
+.attendance-table .table-content .present-button {
+    font-family: "Mulish";
+    background-color: #07C55D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    transition: all 0.5s ease 0s;
+}
+.attendance-table .table-content .present-button:hover {
+    background-color: #058A41;
+    transition: all 0.5s ease 0s;
+}
+.attendance-table .table-content .absent-button {
+    font-family: "Mulish";
+    background-color: #D72A1D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    transition: all 0.5s ease 0s;
+}
+.attendance-table .table-content .absent-button:hover {
+    background-color: #A21F16;
+    transition: all 0.5s ease 0s;
+}

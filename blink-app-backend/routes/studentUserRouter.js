@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const studentAuth = require("../middleware/studentAuth");
 const studentUser = require("../models/studentUserModel");
+const studentCourses = require("../models/studentCoursesModel");
 
 studentRouter.post("/register", async (req, res) => {
     
@@ -110,6 +111,13 @@ studentRouter.get("/", studentAuth, async (req, res) => {
 
 studentRouter.get("/added", async (req, res) => {
     const addedStudents = await studentUser.find();
+    res.json(addedStudents);
+});
+
+studentRouter.get("/added/:courseName", async (req, res) => {
+    const registeredCourseStudents = await studentCourses.find({courseName: req.params.courseName}, {_id:0, studentUserId:1});
+    const registeredCourseStudentsArray = registeredCourseStudents.map(x=>x.studentUserId);
+    const addedStudents = await studentUser.find({_id: {$in: registeredCourseStudentsArray}});
     res.json(addedStudents);
 });
 
