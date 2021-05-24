@@ -64,6 +64,7 @@ function StudentLogin() {
                     </div>
                     <a class="areYouTeacher" href="#"><Link to="/TeacherLogin" style={{color: 'inherit', textDecoration: 'inherit'}}><span>Are you a Teacher?</span></Link></a>
                     <a class="already" href="#"><Link to="/StudentSignup" style={{color: '#8fa3a3', textDecoration: 'inherit'}}>Don't have an account? <span>Sign Up</span></Link></a>
+                    <a class="whiteboard" href={'http://localhost:3006'}>Whiteboard</a>
                 </form>
             </div>
         </div>

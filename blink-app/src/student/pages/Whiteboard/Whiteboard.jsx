@@ -1,6 +1,7 @@
 import React from 'react'
 import Navigation from '../../components/Navigation/Navigation';
 import './Whiteboard.scss';
+import Container from '../../../whiteboard/container/Container';
 
 function Whiteboard() {
     return (
@@ -12,6 +13,7 @@ function Whiteboard() {
                     <h2>Digital Whiteboard</h2>
                 </div>
                 <div class="whiteboard-headimg"></div>
+                <Container/>
             </div>
         </div>
     )

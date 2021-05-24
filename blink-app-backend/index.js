@@ -6,8 +6,19 @@ require("dotenv").config();
 //express
 
 const app = express();
+const http = require('http').createServer(app);;
+const io = require('socket.io')(http);
 app.use(express.json());
 app.use(cors());
+
+//socket io
+
+io.on('connection', (socket)=> {
+    console.log('User Online');
+    socket.on('canvas-data', (data)=> {
+        socket.broadcast.emit('canvas-data', data);
+    })
+})
 
 const PORT = process.env.PORT || 5000;
 
